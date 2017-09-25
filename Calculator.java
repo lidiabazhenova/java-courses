@@ -1,6 +1,6 @@
 public class Calculator {
 	
-	changed
+	
 	
 	private int result;
 
