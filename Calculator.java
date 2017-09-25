@@ -1,5 +1,7 @@
 public class Calculator {
 	
+	changed
+	
 	private int result;
 
 	public void add(int...params){
