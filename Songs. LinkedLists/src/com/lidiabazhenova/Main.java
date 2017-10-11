@@ -29,7 +29,7 @@ public class Main {
         listOfSongsEnriqueIglesias.add(new Song(	"Trapecista", 2) );
         listOfSongsEnriqueIglesias.add(new Song(	"Por Amarte", 3) );
         listOfSongsEnriqueIglesias.add(new Song(	"Si Tú Te Vas", 4.5) );
-        albumEnriqueIglesias.printList(listOfSongsEnriqueIglesias);
+        //albumEnriqueIglesias.printList(listOfSongsEnriqueIglesias);
 
 
         ArrayList<Song> listOfSongsVivir = new ArrayList<>();
@@ -38,10 +38,16 @@ public class Main {
         listOfSongsVivir.add(new Song(		"Al Despertar", 2) );
         listOfSongsVivir.add(new Song(		"Lluvia Cae", 3) );
         listOfSongsVivir.add(new Song(	"Tu Vacío", 4.5) );
-        albumVivir.printList(listOfSongsVivir);
+        //albumVivir.printList(listOfSongsVivir);
 
-//        LinkedList<Song> playList = new LinkedList<>();
-//        playList.add();
+        Playlist playList = new Playlist();
+        LinkedList<Song> myplayList = new LinkedList<>();
+        myplayList.add(new Song("No Llores Por Mí", 4));
+        myplayList.add(new Song(	"Trapecista", 2) );
+        playList.getMenu(myplayList);
+
+
+
 
     }
 
