@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class Playlist {
 
+    private static final int QUIT_ACTION = 0;
+
 
     public void getMenu(LinkedList playList) {
         Scanner scanner = new Scanner(System.in);
@@ -23,7 +25,7 @@ public class Playlist {
             int action = scanner.nextInt();
             scanner.nextLine();
             switch (action) {
-                case 0:
+                case QUIT_ACTION:
                     System.out.println("Songs over");
                     quit = true;
                     break;
@@ -56,8 +58,18 @@ public class Playlist {
                     }
                     break;
                 case 3:
-                   // System.out.println("Now playing " + listIterator.getName());
+                    if (listIterator.hasNext()) {
+                        System.out.println("Now playing " + listIterator.next().getName());
+                        listIterator.previous();
+                    } else {
+                        System.out.println("Now playing " + listIterator.previous().getName());
+                        listIterator.next();
+                    }
+
                     break;
+
+
+
             }
         }
     }
