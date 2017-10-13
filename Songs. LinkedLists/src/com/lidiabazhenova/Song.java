@@ -14,8 +14,14 @@ public class Song {
         return name;
     }
 
-    public double getDuration() {
-        return duration;
+    @Override
+    public String toString() {
+        return "Song " +'"'+
+                 this.name + '"' + " : " +
+                 + this.duration +
+                " min";
     }
 }
+
+
 

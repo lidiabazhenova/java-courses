@@ -10,6 +10,8 @@ public class Playlist {
     private static final int NEXT_SONG = 1;
     private static final int PREVIOUS_SONG = 2;
     private static final int REPLAY_SONG = 3;
+    private static final int REMOVE_SONG = 4;
+
 
     public void getMenu(LinkedList playList) {
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +23,7 @@ public class Playlist {
             return;
         } else {
             Song song = listIterator.next();
-            System.out.println("Song " + song.getName() + " is playing now. duration " + song.getDuration());
+            System.out.println("Song " + song.toString());
             printMenu();
         }
         while (!quit) {
@@ -41,7 +43,7 @@ public class Playlist {
                     }
                     if (listIterator.hasNext()) {
                         Song nextSong = listIterator.next();
-                        System.out.println("Now playing " + nextSong.getName() + ". " + nextSong.getDuration() + " minute");
+                        System.out.println("Now playing " + nextSong.toString());
                     } else {
                         System.out.println("Reached the end of the list");
                         goingForward = false;
@@ -56,7 +58,7 @@ public class Playlist {
                     }
                     if (listIterator.hasPrevious()) {
                         Song previousSong = listIterator.previous();
-                        System.out.println("Now playing " + previousSong.getName() + ". " + previousSong.getDuration() + " minute");
+                        System.out.println("Now playing " + previousSong.toString());
                     } else {
                         System.out.println("We are at the  start of the list");
                         goingForward = true;
@@ -65,12 +67,17 @@ public class Playlist {
                 case REPLAY_SONG:
                     Song repeatSong = listIterator.next();
                     if (listIterator.hasNext()) {
-                        System.out.println("Now playing " + repeatSong.getName() + ". " + repeatSong.getDuration() + " minute");
+                        System.out.println("Now playing " + repeatSong.toString());
                         listIterator.previous();
                     } else {
-                        System.out.println("Now playing " + repeatSong.getName() + ". " + repeatSong.getDuration() + " minute");
+                        System.out.println("Now playing " + repeatSong.toString());
                         listIterator.next();
                     }
+                    break;
+                case REMOVE_SONG:
+                    System.out.println("Song was deleted from playlist:" + listIterator.next().getName());
+                    listIterator.remove();
+
                     break;
             }
         }
@@ -81,7 +88,8 @@ public class Playlist {
         System.out.println("0 - to quit\n" +
                 "1 - to go to next song\n" +
                 "2 - go to previous song\n" +
-                "3 - replay song");
+                "3 - replay song\n" +
+                "4 - delete from playlist");
     }
 
 

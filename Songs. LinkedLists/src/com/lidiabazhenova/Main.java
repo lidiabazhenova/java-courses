@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Main {
+    private ArrayList<Album> albums = new ArrayList<Album>();
     // Create a program that implements a playlist for songs
     // Create a Song class having Title and Duration for a song.
     // The program will have an Album class containing a list of songs.
@@ -21,8 +22,9 @@ public class Main {
     // (hint: listiterator.remove()
 
     public static void main(String[] args) {
-        ArrayList<Song> listOfSongsEnriqueIglesias = new ArrayList<>();
-        Album albumEnriqueIglesias = new Album("Enrique Iglesias", listOfSongsEnriqueIglesias);
+
+        ArrayList<Song> listOfSongsEnriqueIglesias = new ArrayList<Song>();
+        Album albumEnriqueIglesias = new Album("Enrique Iglesias",  listOfSongsEnriqueIglesias);
         listOfSongsEnriqueIglesias.add(new Song("No Llores Por Mí", 4));
         listOfSongsEnriqueIglesias.add(new Song("Trapecista", 2));
         listOfSongsEnriqueIglesias.add(new Song("Por Amarte", 3));
@@ -31,7 +33,7 @@ public class Main {
 
 
         ArrayList<Song> listOfSongsVivir = new ArrayList<>();
-        Album albumVivir = new Album("Vivir", listOfSongsVivir);
+        Album albumVivir = new Album("Vivir",  listOfSongsVivir);
         listOfSongsVivir.add(new Song("Enamorado Por Primera Vez", 4));
         listOfSongsVivir.add(new Song("Al Despertar", 2));
         listOfSongsVivir.add(new Song("Lluvia Cae", 3));
