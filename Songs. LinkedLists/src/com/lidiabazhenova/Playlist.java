@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class Playlist {
 
     private static final int QUIT_ACTION = 0;
-
+    private static final int NEXT_SONG = 1;
+    private static final int PREVIOUS_SONG = 2;
+    private static final int REPLAY_SONG = 3;
 
     public void getMenu(LinkedList playList) {
         Scanner scanner = new Scanner(System.in);
@@ -18,7 +20,8 @@ public class Playlist {
             System.out.println("No songs in the itenarary");
             return;
         } else {
-            System.out.println("Song " + listIterator.next().getName() + " is playing now");
+            Song song = listIterator.next();
+            System.out.println("Song " + song.getName() + " is playing now. duration " + song.getDuration());
             printMenu();
         }
         while (!quit) {
@@ -29,7 +32,7 @@ public class Playlist {
                     System.out.println("Songs over");
                     quit = true;
                     break;
-                case 1:
+                case NEXT_SONG:
                     if (!goingForward) {
                         if (listIterator.hasNext()) {
                             listIterator.next();
@@ -37,13 +40,14 @@ public class Playlist {
                         goingForward = true;
                     }
                     if (listIterator.hasNext()) {
-                        System.out.println("Now playing " + listIterator.next().getName());
+                        Song nextSong = listIterator.next();
+                        System.out.println("Now playing " + nextSong.getName() + ". " + nextSong.getDuration() + " minute");
                     } else {
                         System.out.println("Reached the end of the list");
                         goingForward = false;
                     }
                     break;
-                case 2:
+                case PREVIOUS_SONG:
                     if (goingForward) {
                         if (listIterator.hasPrevious()) {
                             listIterator.previous();
@@ -51,25 +55,23 @@ public class Playlist {
                         goingForward = false;
                     }
                     if (listIterator.hasPrevious()) {
-                        System.out.println("Now playing " + listIterator.previous().getName());
+                        Song previousSong = listIterator.previous();
+                        System.out.println("Now playing " + previousSong.getName() + ". " + previousSong.getDuration() + " minute");
                     } else {
                         System.out.println("We are at the  start of the list");
                         goingForward = true;
                     }
                     break;
-                case 3:
+                case REPLAY_SONG:
+                    Song repeatSong = listIterator.next();
                     if (listIterator.hasNext()) {
-                        System.out.println("Now playing " + listIterator.next().getName());
+                        System.out.println("Now playing " + repeatSong.getName() + ". " + repeatSong.getDuration() + " minute");
                         listIterator.previous();
                     } else {
-                        System.out.println("Now playing " + listIterator.previous().getName());
+                        System.out.println("Now playing " + repeatSong.getName() + ". " + repeatSong.getDuration() + " minute");
                         listIterator.next();
                     }
-
                     break;
-
-
-
             }
         }
     }
