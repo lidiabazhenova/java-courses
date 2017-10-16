@@ -45,7 +45,7 @@ public class Playlist {
                     }
                     if (listIterator.hasNext()) {
                         Song nextSong = listIterator.next();
-                        System.out.println("Now playing " + nextSong.toString());
+                        System.out.println("Now is playing " + nextSong.toString());
                     } else {
                         System.out.println("Reached the end of the list");
                         goingForward = false;
@@ -60,25 +60,48 @@ public class Playlist {
                     }
                     if (listIterator.hasPrevious()) {
                         Song previousSong = listIterator.previous();
-                        System.out.println("Now playing " + previousSong.toString());
+                        System.out.println("Now is playing " + previousSong.toString());
                     } else {
                         System.out.println("We are at the  start of the list");
                         goingForward = true;
                     }
                     break;
                 case REPLAY_SONG:
-                    Song repeatSong = listIterator.next();
-                    if (listIterator.hasNext()) {
-                        System.out.println("Now playing " + repeatSong.toString());
-                        listIterator.previous();
+                    if (goingForward) {
+                        if (listIterator.hasPrevious()) {
+                            System.out.println("Now is playing " + listIterator.previous().toString());
+                            goingForward = false;
+                        } else {
+                            System.out.println("Reached the start of the list");
+                        }
                     } else {
-                        System.out.println("Now playing " + repeatSong.toString());
-                        listIterator.next();
+                        if (listIterator.hasNext()) {
+                            System.out.println("Now is playing " + listIterator.next().toString());
+                            goingForward = true;
+                        } else {
+                            System.out.println("Reached the end of the list");
+                        }
                     }
+
+
+//                    Song repeatSong = listIterator.next();
+//                    if (listIterator.hasNext()) {
+//                        System.out.println("Now playing " + repeatSong.toString());
+//                        listIterator.previous();
+//                    } else {
+//                        System.out.println("Now playing " + repeatSong.toString());
+//                        listIterator.next();
+//                    }
                     break;
                 case REMOVE_SONG:
-                    System.out.println("Song was deleted from playlist:" + listIterator.next().getName());
-                    listIterator.remove();
+                    if (playList.size() > 0) {
+                        listIterator.remove();
+                        if (listIterator.hasNext()) {
+                            System.out.println("Now is playing " + listIterator.next().toString());
+                        } else if (listIterator.hasPrevious()) {
+                            System.out.println("Now is playing " + listIterator.previous().toString());
+                        }
+                    }
                     break;
                 case PRINT_PLAYLIST:
                     printList(playList);
