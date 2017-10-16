@@ -1,5 +1,6 @@
 package com.lidiabazhenova;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
@@ -11,7 +12,8 @@ public class Playlist {
     private static final int PREVIOUS_SONG = 2;
     private static final int REPLAY_SONG = 3;
     private static final int REMOVE_SONG = 4;
-
+    private static final int PRINT_PLAYLIST = 5;
+    private static final int PRINT_MENU = 6;
 
     public void getMenu(LinkedList playList) {
         Scanner scanner = new Scanner(System.in);
@@ -77,19 +79,36 @@ public class Playlist {
                 case REMOVE_SONG:
                     System.out.println("Song was deleted from playlist:" + listIterator.next().getName());
                     listIterator.remove();
-
+                    break;
+                case PRINT_PLAYLIST:
+                    printList(playList);
+                    break;
+                case PRINT_MENU:
+                    printMenu();
                     break;
             }
         }
     }
 
-    private void printMenu() {
+    private static void printMenu() {
         System.out.println("Avaluable actions:\npress ");
         System.out.println("0 - to quit\n" +
                 "1 - to go to next song\n" +
                 "2 - go to previous song\n" +
                 "3 - replay song\n" +
-                "4 - delete from playlist");
+                "4 - delete from playlist\n" +
+                "5 - print playlist\n" +
+                "6 - print menu");
+    }
+
+    private static void printList(LinkedList<Song> playlist) {
+        Iterator<Song> iterator = playlist.iterator();
+        System.out.println(("===================================="));
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+        System.out.println(("===================================="));
+
     }
 
 
