@@ -6,18 +6,59 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CalculatorTest {
+
     @Test
-    public void testAdd() throws Exception {
+    public void testAdd() throws UserException {
         Calculator calculator = new Calculator();
         calculator.add(1.0, 1.0);
         Assert.assertEquals(2.0, calculator.getResult(), 0.000001);
     }
 
     @Test
-    public void testDiv() throws Exception {
+    public void testSub() throws UserException {
         Calculator calculator = new Calculator();
-        calculator.div(9, 10);
-        assertEquals(0.9, calculator.getResult(), 0.000001);
+        calculator.sub(1.0, 0.0);
+        Assert.assertEquals(1.0, calculator.getResult(), 0.000001);
     }
 
+    @Test(expected=UserException.class)
+    public void testMul() throws UserException {
+        Calculator calculator = new Calculator();
+        calculator.mul();
+        Assert.assertEquals(1, calculator.getResult(), 0.000001);
+    }
+
+    @Test(expected=ArrayIndexOutOfBoundsException.class)
+    public void mulException() throws UserException {
+        Calculator calculator = new Calculator();
+        calculator.mul(1);
+        Assert.assertEquals(1, calculator.getResult(), 0.000000000001);
+    }
+
+    @Test
+    public void testDiv() throws Exception {
+        Calculator calculator = new Calculator();
+        calculator.div(-2, -1);
+        Assert.assertEquals(2, calculator.getResult(), 0.00000000001);
+    }
+
+    @Test(expected=UserException.class)
+    public void testDivNoArgs() throws Exception {
+        Calculator calculator = new Calculator();
+        calculator.div();
+        Assert.assertEquals(1, calculator.getResult(), 0.00000000001);
+    }
+
+    @Test(expected=ArrayIndexOutOfBoundsException.class)
+    public void divException() throws Exception {
+        Calculator calculator = new Calculator();
+        calculator.div(1.0);
+    }
+
+    @Test(expected = UserException.class)
+    public void testDivRuntimeException() throws Exception {
+        Calculator calculator = new Calculator();
+        calculator.div(1, 0);
+
+    }
 }
