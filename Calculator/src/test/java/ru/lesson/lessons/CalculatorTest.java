@@ -36,27 +36,27 @@ public class CalculatorTest {
     }
 
     @Test
-    public void testDiv() throws Exception {
+    public void testDiv() throws UserException {
         Calculator calculator = new Calculator();
         calculator.div(-2, -1);
         Assert.assertEquals(2, calculator.getResult(), 0.00000000001);
     }
 
     @Test(expected=UserException.class)
-    public void testDivNoArgs() throws Exception {
+    public void testDivNoArgs() throws UserException {
         Calculator calculator = new Calculator();
         calculator.div();
         Assert.assertEquals(1, calculator.getResult(), 0.00000000001);
     }
 
-    @Test(expected=ArrayIndexOutOfBoundsException.class)
-    public void divException() throws Exception {
+    @Test(expected=UserException.class)
+    public void divException() throws UserException {
         Calculator calculator = new Calculator();
         calculator.div(1.0);
     }
 
     @Test(expected = UserException.class)
-    public void testDivRuntimeException() throws Exception {
+    public void testDivRuntimeException() throws UserException {
         Calculator calculator = new Calculator();
         calculator.div(1, 0);
 

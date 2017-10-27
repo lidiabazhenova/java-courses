@@ -1,5 +1,9 @@
 package ru.lesson.lessons;
 
+import java.util.Arrays;
+
+import static java.util.Arrays.copyOfRange;
+
 public class Calculator {
 
     private double result;
@@ -18,19 +22,24 @@ public class Calculator {
 
 
     public void mul(double... args) throws UserException {
-        if (args.length > 0) {
-            this.result = args[0] - args[1];
+        if (args.length > 1) {
+            this.result = args[0] * args[1];
         } else {
             throw new UserException("You'd enter args");
         }
     }
 
-    public void div(double... args) throws Exception {
-        if (args.length > 0) {
-            if (args[1] == 0) {
-                throw new UserException("division by 0");
-            } else {
-                this.result = args[0] / args[1];
+    public void div(double... args) throws UserException {
+        if (args.length > 1) {
+            this.result = args[0];
+            if (args.length > 1) {
+                for (final double param: copyOfRange(args, 1, args.length)) {
+                    if (param == 0) {
+                        throw new UserException("division by 0");
+                    } else {
+                        this.result /= param;
+                    }
+                }
             }
         } else {
             throw new UserException("You'd enter args");
